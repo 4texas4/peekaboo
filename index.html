@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Sound Board</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .volume-control {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-slider {
+            width: 200px;
+            height: 15px;
+            -webkit-appearance: none;
+            background: #ddd;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #4CAF50;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            background: #45a049;
+        }
+
+        .volume-label {
+            font-size: 14px;
+            color: #333;
+            min-width: 60px;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+        }
+
+        .button-container {
+            text-align: center;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .sound-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 5px;
+            font-size: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .sound-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .sound-button:active {
+            transform: scale(0.95);
+        }
+
+        .button-label {
+            font-size: 12px;
+            color: #333;
+            word-wrap: break-word;
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Volume Control -->
+    <div class="volume-control">
+        <span class="volume-label">Volume: 100%</span>
+        <input type="range" min="0" max="500" value="100" class="volume-slider" id="volumeSlider">
+    </div>
+
+    <!-- Row 1 -->
+    <div class="row">
+        <div class="button-container">
+            <button class="sound-button" onclick="playSound('sounds/bing.mp3')">▶</button>
+            <div class="button-label">bing</div>
+        </div>
+        <div class="button-container">
+            <button class="sound-button" onclick="playSound('sounds/bop.mp3')">▶</button>
+            <div class="button-label">bop</div>
+        </div>
+        <div class="button-container">
+            <button class="sound-button" onclick="playSound('sounds/boom.mp3')">▶</button>
+            <div class="button-label">boom</div>
+        </div>
+        <div class="button-container">
+            <button class="sound-button" onclick="playSound('sounds/bam.mp3')">▶</button>
+            <div class="button-label">bam</div>
+        </div>
+    </div>
