@@ -129,3 +129,47 @@
             <div class="button-label">bam</div>
         </div>
     </div>
+
+    <script>
+        let currentAudio = null;
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeLabel = document.querySelector('.volume-label');
+        const context = new (window.AudioContext || window.webkitAudioContext)();
+        let gainNode = null;
+
+        volumeSlider.addEventListener('input', function() {
+            const volume = this.value;
+            volumeLabel.textContent = `Volume: ${volume}%`;
+            if (gainNode) {
+                gainNode.gain.value = volume / 100;
+            }
+        });
+
+        function playSound(soundFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            currentAudio = new Audio(soundFile);
+            const source = context.createMediaElementSource(currentAudio);
+            gainNode = context.createGain();
+            
+            gainNode.gain.value = volumeSlider.value / 100;
+            
+            source.connect(gainNode);
+            gainNode.connect(context.destination);
+            
+            currentAudio.play().catch(error => {
+                console.error('Error playing sound:', error);
+            });
+        }
+
+        document.body.addEventListener('click', function() {
+            if (context.state === 'suspended') {
+                context.resume();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
